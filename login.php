@@ -5,7 +5,6 @@
 <script src="login.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-
 $(document).ready(function(){
     $('#sign_up').hide();
     $('#link2').click(function(){
@@ -18,104 +17,122 @@ $(document).ready(function(){
         $('#login').show('slow');
         });
       });
-
-
     });
-
-
 </script>
 </head>
 <body>
-<?php 
+<?php
+
+include('connection.php');
+
 
 if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
   if($_POST["password"] == null)
   {
-      $x="feild is empty";
-        $GLOBALS['x'];
+    $x="feild is empty";
+    $GLOBALS['x'];
+  }
+  else{  
+   $m=$_POST["password"];
+ }
+
+  if($_POST["name"] == null)
+  {
+    $y="feild is empty";
+    $GLOBALS['y'];
+  }
+  else {
+    $y = "";
+    $name = test_input($_POST["name"]);
+    // check name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+      $nameError = "Only letters and white space allowed";
+    } 
+    else{
+  $n=$_POST["name"];
+    }
+
+
   }
 
-  
-  
-  if($_POST["name"] == null)
-{
-  $y="feild is empty";
-  $GLOBALS['y'];
-}
+
+  if( $_POST["user_name1"] == null)
+  {
+    $z="field is empty";
+    $GLOBALS['z'];
+  }
+  else{
+    $user_name1=test_input($_POST["user_name1"]);
+    if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name1) ){
+      $error="invalid";
+
+    }
+    else{  
+      $o=$_POST["user_name1"];
+    }
+  } 
 
 
+  if($_POST["email"] == null)
+  {
+    $a="field is empty";
+    $GLOBALS['a'];
+  }
+  else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address syntax is valid or not
+    if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+      $emailError = "Invalid email format";
+    }
+    else{ 
+   $p=$_POST["email"];
+    }
+  }
 
 
-else {
-  $y = "";
-  $name = test_input($_POST["name"]);
-  // check name only contains letters and whitespace
-  if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-    $nameError = "Only letters and white space allowed";
+  if($_POST["number"] == null)
+  {
+    $b="field is empty";
+    $GLOBALS['b'];
+  }
+  else{
+    $number=test_input($_POST["number"]);
+    if(preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $number)){ 
+      $num="invalid number format";
+    }
+    else{ 
+   $q=$_POST["number"];
+    } 
+
+  }
+
+
+  if (empty($_POST["gender"])) {
+    $genderError = "Gender is required";
   } 
 }
-  if( $_POST["user_name1"] == null)
+if(isset($n) && isset($m) && isset($o) && isset($p) && isset($q)){
+$sql = "INSERT INTO php_assign (NAME,USER_NAME,EMAIL,NUMBER,PASSWORD)
+VALUES ('$n','$o','$p',$q,'$m')";
 
-{
-  $z="field is empty";
-  $GLOBALS['z'];
-}
-else{
-  $user_name1=test_input($_POST["user_name1"]);
-  if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name1) ){
-  $error="invalid";
-  
- }
-  else{  
-  $_POST["user_name1"]=$user_name1;
-  
-  }
-
-
-}   
-
-
-if($_POST["email"] == null)
-{
-  $a="field is empty";
-  $GLOBALS['a'];
-}
-else {
-  $email = test_input($_POST["email"]);
-  // check if e-mail address syntax is valid or not
-  if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
-    $emailError = "Invalid email format";
-  }
+if (mysqli_query($conn, $sql)) {
+      echo "New record created successfully";
+} else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-if($_POST["number"] == null)
-{
-  $b="field is empty";
-  $GLOBALS['b'];
+mysqli_close($conn);
 }
-else{
-$number=test_input($_POST["number"]);
-if(preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $number)){ 
-$num="invalid number format";
-}
-
-}
-if (empty($_POST["gender"])) {
-  $genderError = "Gender is required";
-} 
-}
-
-
-
-
-
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
-}
+} 
+
+
+
 ?>
 
 <div class="box">
@@ -125,7 +142,7 @@ function test_input($data) {
 <li class="link" id="link2">Sign Up</li>
 </div>
 <div id="login">
-<form method="post" action="#">
+<form method="post" action="loginclick.php">
 <ul>
 <li><input class="log" type="text" name="user_name" placeholder="Username/Email" required="required"></li>
 <li><input class="log" type="password" name="user_pass" placeholder="password" required="required"></li>
