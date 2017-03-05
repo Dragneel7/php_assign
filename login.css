@@ -1,0 +1,53 @@
+body{
+    margin:0;
+            padding: 0;
+
+}
+.box{
+    border: 2px solid black;
+              width: 35%;
+                      margin: auto;
+                                margin-top: 100px;
+                                  background-color: #e6ffff;
+}
+#links{
+    border-bottom: 1px solid black;
+position: relative;
+bottom:16px;
+        width: 100%;
+                background-color: #7FFFD4;
+
+
+}
+.link{
+    cursor: pointer;
+              list-style-type: none;
+                display: inline;
+                          padding: 35px;
+                                    font-size: 40px;
+
+}
+li{
+    list-style-type: none;
+      padding-top: 20px;
+      padding-left: 70px;
+
+}
+.log{
+    width: 70%;
+}
+input{
+    height: 30px;
+}
+.submit{
+  margin-left: 85px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+            -moz-appearance: none;
+                appearance: none;
+                                margin: 0; 
+  }
+
