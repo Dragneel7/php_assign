@@ -1,0 +1,33 @@
+ss{
+display:none;
+}
+li{
+
+  list-style-type: none;
+padding:20px;
+}
+ul{
+  margin-top: 100px;
+}
+.one{
+position: absolute;
+bottom: 20px;
+}
+.two{
+position: absolute;
+bottom: 20px;
+right: 20px;
+}
+.three{
+position: absolute;
+bottom: 20px;
+right: 600px;
+}
+h1{z-index: 1;
+  text-align: center;
+}
+#info{
+position: absolute;
+top:300px;
+
+}

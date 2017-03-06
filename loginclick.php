@@ -18,7 +18,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $result = $conn->query($sqltest);
     if($result->num_rows == 1)
     {
-      echo"wow";
+     header("Location:http://192.168.121.187:8001/surya/profile.php "); /* Redirect browser */
+     exit();
     }
     else
     {
