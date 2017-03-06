@@ -1,4 +1,4 @@
-ss{
+#pass{
 display:none;
 }
 li{
@@ -30,4 +30,8 @@ h1{z-index: 1;
 position: absolute;
 top:300px;
 
+}
+
+.four{
+    margin-left:400px;
 }

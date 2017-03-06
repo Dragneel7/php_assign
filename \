@@ -42,8 +42,8 @@ function showw(){
 
 <form action="#" method="post">
 
-<li><input type="text" placeholder="add branch(optional)" name="branch" ></li>
-<li><input type="text" placeholder="add area of interests(optional)" name="interest"></li>
+<li><input type="text" placeholder="add branch"></li>
+<li><input type="text" placeholder="add area of interests"></li>
 <li><input type="submit"></li>
 </form>
 <ul>
