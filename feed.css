@@ -1,6 +1,13 @@
-align: center;
+
 }
 .feed{
   margin-top: 170px;
 
+
+}
+#add{
+width:600px;
+height:200px;
+overflow:auto;
+border:2px solid black;
 }
