@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
       
       
-     $sql = "SELECT NAME,NUMBER  FROM php_assign where USER_NAME='$o' AND PASSWORD='$m'";
+     $sql = "SELECT NAME,NUMBER,BRANCH,INTERESTS  FROM php_assign where USER_NAME='$o' AND PASSWORD='$m'";
      $result1 = $conn->query($sql);
 
      if ($result1->num_rows > 0) {
@@ -28,13 +28,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     echo $row["NcAME"];
                      $_SESSION["NAME"]=$row["NAME"];
                      $_SESSION["NUMBER"]=$row["NUMBER"];
+                     if($row["BRANCH"]==null){
+ $_SESSION["BRANCH"]="NOT ADDED";
+                     }else{
+                     $_SESSION["BRANCH"]=$row["BRANCH"];}
+                     if($row["INTERESTS"]==null){ 
+ $_SESSION["INTEREST"]="NOT ADDED";
+
+                     }
+                     else{
+                     $_SESSION["INTEREST"]=$row["INTERESTS"];
+                     }
 
            }
      } else {
            echo "0 results";
      }
      $conn->close();
-      header("Location:http://192.168.121.187:8001/surya/profile.php "); /* Redirect browser */
+      header("Location:http://192.168.121.187:8001/surya/feed.php "); /* Redirect browser */
 
     
      exit();

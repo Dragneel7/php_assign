@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 session_start();
 ?>
 <html>
@@ -7,7 +8,7 @@ session_start();
 <title></title>
 <SCRIPT >
 function showw(){
-  document.getElementById('pass').style.display="block";
+    document.getElementById('pass').style.display="block";
 }
 </SCRIPT>
 </head>
@@ -39,10 +40,12 @@ function showw(){
 <li><span>Name: <?php if(isset($_SESSION["NAME"])){echo $_SESSION["NAME"];}?></span></li>
 <li><span>User name: <?php if(isset($_SESSION["USERNAME"])){echo $_SESSION["USERNAME"];}?></span></li>
 <li><span> User contact: <?php if(isset($_SESSION["NUMBER"])){echo $_SESSION["NUMBER"];}?></span></li>
-<li><span>Branch: <?php if(isset($_SESSION["BRANCH"])){ echo $_SESSION["BRANCH"];}?></span></li>
-<li><span>Interests:  <?php if(isset($_SESSION["INTEREST"])){ echo $_SESSION["INTEREST"];}?></span></li>
 
+<form action="#" method="post">
 
+<li><input type="text" placeholder="add branch(optional)" name="branch" ></li>
+<li><input type="text" placeholder="add area of interests(optional)" name="interest"></li>
+<li><input type="submit"></li>
 </form>
 <ul>
 </div>
