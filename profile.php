@@ -1,15 +1,10 @@
-<?php 
+<?php
 session_start();
 ?>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="profile.css">
 <title></title>
-<SCRIPT >
-function showw(){
-  document.getElementById('pass').style.display="block";
-}
-</SCRIPT>
 </head>
 <body>
 <h1>USER'S PROFILE</h1>
@@ -30,11 +25,16 @@ function showw(){
 <li><input type="submit" value="SET PROFILE IMAGE" name="submit"></li></div>
 <div class="two"><li><input type="file" name="fileToUpload" id="fileToUploadcover" ></li>
 <li><input type="submit" value="SET COVER IMAGE" name="submit"></li></div>
-<div class="three"> <li><input type="text" id="pass" placeholder="enter previous password"></li>
-<li><input type="button" value="CHANGE PASSWORD" onclick="showw()"></li></div>
-
 </ul>
 </form>
+<div class="three"> 
+<form method="post" action="password.php">
+<li><input type="password" name="prevpass" placeholder="enter previous password"></li>
+<li><input type="password"  name="newpass" placeholder="enter new password"></li>
+<li><input type="submit" onclick="yo()" value="change password"></li>
+</form>
+</div>
+
 <div class="four"><ul>
 <li><span>Name: <?php if(isset($_SESSION["NAME"])){echo $_SESSION["NAME"];}?></span></li>
 <li><span>User name: <?php if(isset($_SESSION["USERNAME"])){echo $_SESSION["USERNAME"];}?></span></li>
@@ -46,6 +46,8 @@ function showw(){
 </form>
 <ul>
 </div>
-
+<form method="post" action="logout.php">
+<input type="submit" value="LOG OUT">
+</form>
 </body>
 </html>

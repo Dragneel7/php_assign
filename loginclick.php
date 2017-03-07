@@ -4,8 +4,10 @@ session_start();
 
 include('connection.php');
 //include('login.php');
+echo"hi";
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+  
   $o = $_POST['user_name'];
   $m = $_POST['user_pass'];
 

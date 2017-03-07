@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="login.css">
@@ -22,28 +25,22 @@ $(document).ready(function(){
 </head>
 <body>
 <?php
-
 include('connection.php');
-
-
 if($_SERVER['REQUEST_METHOD'] === 'POST')
-
 {
   if($_POST["password"] == null)
   {
     $x="feild is empty";
     $GLOBALS['x'];
-    
+
   }
   else{  
-   $m=$_POST["password"];
- }
-
+    $m=$_POST["password"];
+  }
   if($_POST["name"] == null)
   {
     $y="feild is empty";
     $GLOBALS['y'];
-    
 
   }
   else {
@@ -52,41 +49,31 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     // check name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
       $nameError = "Only letters and white space allowed";
-    
 
     } 
     else{
-  $n=$_POST["name"];
+      $n=$_POST["name"];
     }
-
-
   }
-
-
   if( $_POST["user_name1"] == null)
   {
     $z="field is empty";
     $GLOBALS['z'];
- 
+
   }
   else{
     $user_name1=test_input($_POST["user_name1"]);
     if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name1) ){
       $error="invalid";
-
-
     }
     else{  
       $o=$_POST["user_name1"];
     }
   } 
-
-
   if($_POST["email"] == null)
   {
     $a="field is empty";
     $GLOBALS['a'];
-
   }
   else {
     $email = test_input($_POST["email"]);
@@ -95,48 +82,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
       $emailError = "Invalid email format";
     }
     else{ 
-   $p=$_POST["email"];
+      $p=$_POST["email"];
     }
   }
-
-
   if($_POST["number"] == null)
   {
     $b="field is empty";
     $GLOBALS['b'];
-
   }
   else{
     $number=test_input($_POST["number"]);
     if(preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $number)){ 
       $num="invalid number format";
-
     }
-
     else{ 
-   $q=$_POST["number"];
+      $q=$_POST["number"];
     } 
-
   }
-
-
   if (empty($_POST["gender"])) {
     $genderError = "Gender is required";
-
   } 
 }
-
 if(isset($n) && isset($m) && isset($o) && isset($p) && isset($q)){
-$sql = "INSERT INTO php_assign (NAME,USER_NAME,EMAIL,NUMBER,PASSWORD)
-VALUES ('$n','$o','$p',$q,'$m')";
-
-if (mysqli_query($conn, $sql)) {
-      echo "New record created successfully";
-} else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-mysqli_close($conn);
+  $sql = "INSERT INTO php_assign (NAME,USER_NAME,EMAIL,NUMBER,PASSWORD)
+    VALUES ('$n','$o','$p',$q,'$m')";
+  if (mysqli_query($conn, $sql)) {
+    $_SESSION["NAME"]=$n;
+    $_SESSION["USER_NAME"]=$o;
+    $_SESSION["NUMBER"]=$q;
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+  mysqli_close($conn);
+  header("Location:http://192.168.121.187:8001/surya/fillfield.php");
 } 
 function test_input($data) {
   $data = trim($data);
@@ -144,8 +123,6 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 } 
-
-
 ?>
 
 <div class="box">

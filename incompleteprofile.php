@@ -38,10 +38,10 @@ function showw(){
 </form>
 <div class="four"><ul>
 <li><span>Name: <?php if(isset($_SESSION["NAME"])){echo $_SESSION["NAME"];}?></span></li>
-<li><span>User name: <?php if(isset($_SESSION["USERNAME"])){echo $_SESSION["USERNAME"];}?></span></li>
+<li><span>User name: <?php if(isset($_SESSION["USER_NAME"])){echo $_SESSION["USER_NAME"];}?></span></li>
 <li><span> User contact: <?php if(isset($_SESSION["NUMBER"])){echo $_SESSION["NUMBER"];}?></span></li>
 
-<form action="#" method="post">
+<form action="addinterest.php" method="post">
 
 <li><input type="text" placeholder="add branch(optional)" name="branch" ></li>
 <li><input type="text" placeholder="add area of interests(optional)" name="interest"></li>
