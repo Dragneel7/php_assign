@@ -31,7 +31,8 @@ session_start();
 <form method="post" action="password.php">
 <li><input type="password" name="prevpass" placeholder="enter previous password"></li>
 <li><input type="password"  name="newpass" placeholder="enter new password"></li>
-<li><input type="submit" onclick="yo()" value="change password"></li>
+<li><input type="submit" value="change password"></li>
+<span><?php if(isset($_SESSION["VAR"]))echo $_SESSION["VAR"]; ?></span>
 </form>
 </div>
 
@@ -47,7 +48,19 @@ session_start();
 <ul>
 </div>
 <form method="post" action="logout.php">
-<input type="submit" value="LOG OUT">
+<input type="submit" value="LOG OUT" id="log" >
 </form>
+<div class="five">
+<form method="post" action="change.php">
+<ul>
+<li><input type="text" name="name" placeholder="new name "></li>
+<li><input type="text" name="username" placeholder="new username "></li>   
+<li><input type="number" name="contact" placeholder="new contact number "></li>   
+   
+<li><input type="text" name="interest" placeholder="change interests "></li> 
+<li><input type="submit" value="change info ">
+</form>
+</div>
+
 </body>
 </html>
