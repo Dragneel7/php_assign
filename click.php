@@ -2,9 +2,10 @@
 session_start();
 include'connection.php';
 $name=$_SESSION["USER_NAME"];
+echo$name;
 $sql="select * from php_assign where USER_NAME='$name'";
 $result=$conn->query($sql);
-if($results->num_rows>0){
+if($result->num_rows>0){
 while($row=$result->fetch_assoc()){
   $_SESSION["NAME"]=$row["NAME"];
                        $_SESSION["NUMBER"]=$row["NUMBER"];
