@@ -17,7 +17,7 @@ session_start();
 <hr>
 <img id="image" src="<?php  echo $_SESSION["URL"]; ?>" alt="error">
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form action="upload1.php" method="post" enctype="multipart/form-data">
 
 <ul>
 <div class="one">

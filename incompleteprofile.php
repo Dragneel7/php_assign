@@ -22,7 +22,7 @@ function showw(){
 <br>
 <hr>
 
-<img id="image" src="#" alt="add profile">
+<img id="image" src="<?PHP echo$_SESSION["URL"]; ?>" alt="add profile">
 <form action="upload.php" method="post" enctype="multipart/form-data">
 
 <ul>

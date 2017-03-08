@@ -28,7 +28,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-header("Location:http://192.168.121.187:8001/surya/click.php ");
+header("Location:http://192.168.121.187:8001/surya/onclick.php ");
 ?>
 <html>
 <head>

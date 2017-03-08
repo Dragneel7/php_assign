@@ -1,91 +1,42 @@
+<?php 
+session_start();
+print_r($_POST);
+print_r($_FILES);
+if(isset($_FILES["fileToUpload"])){
+    $target_dir = "uploads/";
+      $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+          $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                  echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                    } else {
+                          echo "Sorry, there was an error uploading your file.";
+                            }
+              echo $_FILES["fileToUpload"]["name"];
+               $name= $_SESSION["USERNAME"];
+                echo $name;
+                  $url="uploads/".$_FILES["fileToUpload"]["name"];
+                    echo "<br>".$_SESSION["URL"];
+
+                    include'connection.php';
+                    $sql = "update php_assign set PROFILE='$url' where USER_NAME='$name'";
+}
+if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+} else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+header("Location:http://192.168.121.187:8001/surya/click.php ");
+?>
 <html>
 <head>
 <title>
 </title>
 </head>
 <body>
-
-
-<?php
-
-$file_exts = array("jpg", "bmp", "jpeg", "gif", "png");
-
-$upload_exts = end(explode(".", $_FILES["file"]["name"]));
-
-if ((($_FILES["file"]["type"] == "image/gif")
-      
-      || ($_FILES["file"]["type"] == "image/jpeg")
-      
-      || ($_FILES["file"]["type"] == "image/png")
-      
-      || ($_FILES["file"]["type"] == "image/pjpeg"))
-    
-    && ($_FILES["file"]["size"] < 2000000)
-    
-    && in_array($upload_exts, $file_exts))
-
-{
-  
-    if ($_FILES["file"]["error"] > 0)
-      
-      {
-        
-          echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
-        
-      }
-  
-    else
-      
-      {
-        
-          echo "Upload: " . $_FILES["file"]["name"] . "<br>";
-        
-          echo "Type: " . $_FILES["file"]["type"] . "<br>";
-        
-          echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-        
-          echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-        
-          // Enter your path to upload file here
-          
-          if (file_exists("c:\wamp\www\upload/newupload/" .
-                
-                $_FILES["file"]["name"]))
-            
-            {
-              
-                echo "<div class='error'>"."(".$_FILES["file"]["name"].")".
-                
-                " already exists. "."</div>";
-              
-            }
-        
-          else
-            
-            {
-              
-                move_uploaded_file($_FILES["file"]["tmp_name"],
-                    
-                    "http://192.168.121.187:8001/surya/uploads" . $_FILES["file"]["name"]);
-              
-                echo "<div class='sucess'>"."Stored in: " .
-                
-                "c:\wamp\www\upload/newupload/" . $_FILES["file"]["name"]."</div>";
-              
-            }
-        
-      }
-  
-}
-
-else
-
-{
-  
-    echo "<div class='error'>Invalid file</div>";
-  
-}
-
-?>
 </body>
 </html>
+    
+
