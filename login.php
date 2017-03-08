@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(empty($_SESSION["USERNAME"])){
+if(empty($_SESSION["USERNAME"]) && isset($_COOKIE["user"]) ){
   $_SESSION["USERNAME"]=$_COOKIE["user"];
    header("Location:http://192.168.121.187:8001/surya/loginclick.php");   
     
@@ -40,9 +40,9 @@ $(document).ready(function() {
         }, 1000);
       });
 
-    function check_username_ajax(username){
+    function check_username_ajax(user_name){
     $("#user-result").html('<p>checking</p>');
-    $.post('username-checker.php', {'username':username}, function(data) {
+    $.post('ajaxcheck.php', {'user_name1':user_name}, function(data) {
       $("#user-result").html(data);
       });
     }
@@ -61,8 +61,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     $GLOBALS['x'];
 
   }
-  else{  
+  else{
+    
     $m=$_POST["password"];
+    $m=sha1($m);
   }
   if($_POST["name"] == null)
   {
@@ -172,8 +174,8 @@ function test_input($data) {
 <div id="sign_up">
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  onsubmit="return finalcheck()">
 <ul>
-<li><input class="log" id="name" type="text" name="name" placeholder="Enter your Name" onchange="name1()"><span id="user-result"></span><span> <?php if (isset($y)) {echo "*".$y;} ?></span> <span class="error"> <?php if(isset($nameError)){echo $nameError ;}?></span> </li>
-<li><input class="log" type="text" name="user_name1" placeholder="Type your username"id="username"; ><span> <?php if(isset($z)){echo "*".$z;} ?></span><span class="error"> <?php if(isset($error)){ echo $error;}?></span>  </li>
+<li><input class="log" id="name" type="text" name="name" placeholder="Enter your Name" onchange="name1()"><span> <?php if (isset($y)) {echo "*".$y;} ?></span> <span class="error"> <?php if(isset($nameError)){echo $nameError ;}?></span> </li>
+<li><input class="log" type="text" name="user_name1" placeholder="Type your username"id="username"; ><h1><span id="user-result"></span></h1> <span> <?php if(isset($z)){echo "*".$z;} ?></span><span class="error"> <?php if(isset($error)){ echo $error;}?></span>  </li>
 <li><input class="log" type="text" name="email" placeholder="Enter Email"><span> <?php if(isset($a)){echo "*".$a;} ?></span><span class="error"> <?php if(isset($emailError)){ echo $emailError;}?></span> </li>
 <li><input class="log" id="num" type="number" name="number" placeholder="Enter your number"  onchange="number1()"><span> <?php if(isset($b)){ echo"*". $b;} ?></span> <span class="error"> <?php if(isset($num)){ echo $num ;}?></span></li>
 <li><input class="log" id="pass" type="password" name="password" placeholder="password" ><span><?php if(isset($x)){echo "*".$x;} ?></span>  </li>

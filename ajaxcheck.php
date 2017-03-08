@@ -1,11 +1,24 @@
 <?php
-if(isset($_POST["username"]))
+
+
+
+if(isset($_POST["user_name1"]))
 {
-  if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+
+$s =$_POST["user_name1"];
+include'connection.php';
+$sql="select * from php_assign where USER_NAME='$s'";
+$result=$conn->query($sql);
+if($result->num_rows>0){
+  echo "user name taken";
+}
+}
+
+/*  if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
     die();
   }
   include'connection.php';
-  $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
+  //$username = filter_var($_POST["username"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
 
   $statement = $mysqli->prepare("SELECT USER_NAME FROM php_assign WHERE username=?");
   $statement->bind_param('s', $username);
@@ -17,13 +30,5 @@ if(isset($_POST["username"]))
     die('<p>yes <p/>');
   }
 }
-
+*/
 ?>
-<html>
-<head>
-<title>
-</title>
-</head>
-<body>
-</body>
-</html>
