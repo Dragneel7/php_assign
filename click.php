@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(empty($_SESSION["USER_NAME"])){
+    $_SESSION["USER_NAME"]=$_COOKIE["user"];
+}
+
 include'connection.php';
 $name=$_SESSION["USER_NAME"];
 echo$name;

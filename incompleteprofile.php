@@ -1,4 +1,8 @@
 <?php
+if(empty($_SESSION["USER_NAME"])){
+    $_SESSION["USER_NAME"]=$_COOKIE["user"];
+}
+
 
 session_start();
 ?>

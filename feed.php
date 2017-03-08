@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(empty($_SESSION["USERNAME"])){
+$_SESSION["USERNAME"]=$_COOKIE["user"];
+ header("Location:http://192.168.121.187:8001/surya/loginclick.php");   
+ 
+}
 ?>
 <html>
 <head>
@@ -17,7 +22,7 @@ session_start();
    $sql="select * from feeds order by DATE";
    $result= $conn->query($sql);
    if($result->num_rows>0){
-while($row=$result->fetch_assoc()){  
+while($row=$result->fetch_assoc()){
 echo $row["USER_NAME"]."(".$row["DATE"].") : ".$row["USER_FEED"]."<br>";
 
 }

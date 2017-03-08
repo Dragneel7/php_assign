@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(empty($_SESSION["USERNAME"])){
+  $_SESSION["USERNAME"]=$_COOKIE["user"];
+   header("Location:http://192.168.121.187:8001/surya/loginclick.php");   
+    
+}
+
 ?>
 <html>
 <head>
