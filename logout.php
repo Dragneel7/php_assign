@@ -1,5 +1,6 @@
 <?php
 session_start();
+setcookie("user", "", time() - 3600);
 ?>
 <!DOCTYPE html>
 <html>

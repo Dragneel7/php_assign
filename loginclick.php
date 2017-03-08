@@ -5,9 +5,9 @@ session_start();
 include('connection.php');
 //include('login.php');
 echo"hi";
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-  
   $o = $_POST['user_name'];
   $m = $_POST['user_pass'];
 
@@ -19,15 +19,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     {
       $_SESSION["USERNAME"]=$o;
 
-      
-      
      $sql = "SELECT NAME,NUMBER,BRANCH,INTERESTS  FROM php_assign where USER_NAME='$o' AND PASSWORD='$m'";
      $result1 = $conn->query($sql);
 
      if ($result1->num_rows > 0) {
            // output data of each row
            while($row = $result1->fetch_assoc()) {
-                    echo $row["NcAME"];
                      $_SESSION["NAME"]=$row["NAME"];
                      $_SESSION["NUMBER"]=$row["NUMBER"];
                      if($row["BRANCH"]==null){
@@ -47,14 +44,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
            echo "0 results";
      }
      $conn->close();
-      header("Location:http://192.168.121.187:8001/surya/feed.php "); /* Redirect browser */
-
-    
+      //setting a cookie
+      $user=$o;
+      $cookie_name = "user";
+      $cookie_value="$user";
+      setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+      echo $_SESSION["USER"];
+      echo $_COOKIE['x'];
+      header("Location:http://192.168.121.187:8001/surya/feed.php");   
      exit();
     }
-   
   }
-}
+ }
+
+
+
+
+
 ?>
 <html>
 <head>

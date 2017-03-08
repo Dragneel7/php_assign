@@ -22,18 +22,13 @@ function showw(){
 <br>
 <hr>
 
-
+<img id="image" src="#" alt="add profile">
 <form action="upload.php" method="post" enctype="multipart/form-data">
 
 <ul>
 <div class="one">
 <li><input type="file" name="fileToUpload" id="fileToUpload" ></li>
 <li><input type="submit" value="SET PROFILE IMAGE" name="submit"></li></div>
-<div class="two"><li><input type="file" name="fileToUpload" id="fileToUploadcover" ></li>
-<li><input type="submit" value="SET COVER IMAGE" name="submit"></li></div>
-<div class="three"> <li><input type="text" id="pass" placeholder="enter previous password"></li>
-<li><input type="button" value="CHANGE PASSWORD" onclick="showw()"></li></div>
-
 </ul>
 </form>
 <div class="four"><ul>

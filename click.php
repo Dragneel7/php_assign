@@ -12,6 +12,7 @@ while($row=$result->fetch_assoc()){
                        $_SESSION["USERNAME"]=$name;
                        $_SESSION["BRANCH"]=$row["BRANCH"];
                        $_SESSION["INTEREST"]=$row["INTERESTS"];
+                       $_SESSION["URL"]=$row["PROFILE"];
 }
 
 $conn->close();

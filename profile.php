@@ -15,7 +15,7 @@ session_start();
 <br>
 <br>
 <hr>
-
+<img id="image" src="<?php  echo $_SESSION["URL"]; ?>" alt="error">
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
 
@@ -23,8 +23,7 @@ session_start();
 <div class="one">
 <li><input type="file" name="fileToUpload" id="fileToUpload" ></li>
 <li><input type="submit" value="SET PROFILE IMAGE" name="submit"></li></div>
-<div class="two"><li><input type="file" name="fileToUpload" id="fileToUploadcover" ></li>
-<li><input type="submit" value="SET COVER IMAGE" name="submit"></li></div>
+
 </ul>
 </form>
 <div class="three"> 
@@ -37,6 +36,7 @@ session_start();
 </div>
 
 <div class="four"><ul>
+<a href="http://192.168.121.187:8001/surya/feed.php">common feed</a>
 <li><span>Name: <?php if(isset($_SESSION["NAME"])){echo $_SESSION["NAME"];}?></span></li>
 <li><span>User name: <?php if(isset($_SESSION["USERNAME"])){echo $_SESSION["USERNAME"];}?></span></li>
 <li><span> User contact: <?php if(isset($_SESSION["NUMBER"])){echo $_SESSION["NUMBER"];}?></span></li>

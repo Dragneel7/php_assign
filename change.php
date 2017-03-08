@@ -14,7 +14,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
- header("Location:http://192.168.121.187:8001/surya/feed.php ");
+ header("Location:http://192.168.121.187:8001/surya/infochange.php ");
 exit();
 ?>
 <html>

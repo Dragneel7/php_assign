@@ -122,7 +122,10 @@ function test_input($data) {
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
-} 
+}if(isset($o) && isset($m)){
+$_SESSION["USER"]=$o;
+$_SESSION["PASS"]=$m;
+}
 ?>
 
 <div class="box">
@@ -136,6 +139,7 @@ function test_input($data) {
 <ul>
 <li><input class="log" type="text" name="user_name" placeholder="Username/Email" required="required"></li>
 <li><input class="log" type="password" name="user_pass" placeholder="password" required="required"></li>
+<li>   Remember Me: <input type="checkbox" name="rememberme" value="1"><li>
 <li><input type="submit" class="submit"></li>
 </ul>
 </form>
