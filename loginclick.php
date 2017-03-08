@@ -53,7 +53,16 @@ $m=sha1($m);
      $conn->close();
      if($_POST["rememberme"]=='1' || $_POST["rememberme"]=='on'){
       //setting a cookie
-      $user=$o;
+       include'connection.php';
+      $random=rand();
+      $random1=sha1($random);
+      $sql1="insert into cookie_protect(ID,USER_NAME,HASH) values($random,'$o','$random1')";
+      if($conn->query($sql1)===true){ echo"true";}
+      $conn->close();
+      echo $random;
+      echo $random1;
+      echo $o;
+      $user=$random1;
       $cookie_name = "user";
       $cookie_value="$user";
       setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
@@ -71,16 +80,28 @@ $m=sha1($m);
 
 if($_SERVER['REQUEST_METHOD'] == "GET")
 {
-  $o=$_COOKIE["user"];
-  if(isset($o))
+include'connection.php';
+$m=$_COOKIE["user"];
+$sql2="select USER_NAME from cookie_protect where HASH='$m'";
+$result2=$conn->query($sql2);
+if($result2->num_rows>0){
+while($row=$result2->fetch_assoc()){
+$n=$row["USER_NAME"];
+
+}
+
+}
+
+  
+  if(isset($n))
   {
-    $sqltest="select*from php_assign where USER_NAME='$o'";
+    $sqltest="select*from php_assign where USER_NAME='$n'";
     $result = $conn->query($sqltest);
     if($result->num_rows == 1)
     {
-      $_SESSION["USERNAME"]=$o;
+      $_SESSION["USERNAME"]=$n;
 
-     $sql = "SELECT NAME,NUMBER,BRANCH,INTERESTS,PROFILE  FROM php_assign where USER_NAME='$o'";
+     $sql = "SELECT NAME,NUMBER,BRANCH,INTERESTS,PROFILE  FROM php_assign where USER_NAME='$n'";
      $result1 = $conn->query($sql);
 
      if ($result1->num_rows > 0) {

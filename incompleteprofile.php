@@ -1,6 +1,23 @@
-<?php
+<?php 
+
+include'connection.php';
+$m=$_COOKIE["user"];
+$sql2="select USER_NAME from cookie_protect where HASH='$m'";
+$result2=$conn->query($sql2);
+if($result2->num_rows>0){
+  while($row=$result2->fetch_assoc()){
+    $n=$row["USER_NAME"];
+
+  }
+
+}
+$conn->close();
+
+
+
+
 if(empty($_SESSION["USER_NAME"])){
-    $_SESSION["USER_NAME"]=$_COOKIE["user"];
+    $_SESSION["USER_NAME"]=$n;
 }
 
 
